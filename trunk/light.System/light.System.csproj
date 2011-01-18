@@ -35,10 +35,13 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CacheService.cs" />
+    <Compile Include="Controller\InfoController.cs" />
     <Compile Include="DAL\KV.cs" />
     <Compile Include="DAL\EB.cs" />
     <Compile Include="Entities\Attributes.cs" />
@@ -46,7 +49,12 @@
     <Compile Include="MethodHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\light\light.csproj">
+      <Project>{8B978397-2CF6-4102-A86A-C3F357F52923}</Project>
+      <Name>light</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

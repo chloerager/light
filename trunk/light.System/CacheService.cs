@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Text;
 using System.Web;
 using System.Web.Caching;
+using System.Runtime.Caching;
 
 namespace light.System
 {
+    /// <summary>
+    ///  缓存服务，支持内存缓存和分布式缓存。
+    /// </summary>
    public sealed class CacheService
    {
-      private readonly static Cache cache = HttpContext.Current.Cache;
+       private readonly static MemoryCache cache = MemoryCache.Default;
 
       private CacheService() { }
 
@@ -21,7 +25,12 @@ namespace light.System
 
       public static void Add(string key, string content)
       {
-         cache.Add(key, content, null, DateTime.Now.AddMilliseconds(30), Cache.NoSlidingExpiration, CacheItemPriority.Normal, null);
+         cache.Add(key, content, DateTime.Now.AddMilliseconds(30));
+      }
+
+      public static void Add(string key, string content, DateTimeOffset expiration)
+      {
+          cache.Add(key, content, expiration);
       }
 
       /// <summary>
@@ -37,7 +46,7 @@ namespace light.System
          if (content == null)
          {
             content = callback();
-            cache.Add(key, content, null, DateTime.Now.AddMinutes(30), Cache.NoSlidingExpiration, CacheItemPriority.Normal, null);
+            cache.Add(key, content,  DateTime.Now.AddMinutes(30));
          }
 
          return content;
@@ -57,7 +66,7 @@ namespace light.System
          if (content == null)
          {
             content = callback(count);
-            if (content != null) cache.Add(key, content, null, DateTime.Now.AddMinutes(30), Cache.NoSlidingExpiration, CacheItemPriority.Normal, null);
+            if (content != null) cache.Add(key, content, DateTime.Now.AddMinutes(30));
          }
 
          return content;
@@ -77,7 +86,7 @@ namespace light.System
          if (content == null)
          {
             content = callback(code);
-            if (content != null) cache.Add(key, content, null, DateTime.Now.AddMinutes(30), Cache.NoSlidingExpiration, CacheItemPriority.Normal, null);
+            if (content != null) cache.Add(key, content, DateTime.Now.AddMinutes(30));
          }
 
          return content;
@@ -90,7 +99,7 @@ namespace light.System
          if (content == null)
          {
             content = callback(count, code);
-            if (content != null) cache.Add(key, content, null, DateTime.Now.AddMinutes(30), Cache.NoSlidingExpiration, CacheItemPriority.Normal, null);
+            if (content != null) cache.Add(key, content,  DateTime.Now.AddMinutes(30));
          }
 
          return content;
@@ -107,17 +116,27 @@ namespace light.System
             {
                foreach (T t in list)
                {
-                  content += contentCallback(t);// string.Concat("&nbsp;<span style=\"font-family:宋体;\">·</span><a href=\"", o.URL, "\" title=\"诗词『", o.Name, "』的内容、释义及赏析\">《", o.Name, "》- ", o.Author, "</a><br/>");
+                   content += contentCallback(t);
                }
             }
 
-            if (content != null) cache.Add(key, content, null, DateTime.Now.AddMinutes(30), Cache.NoSlidingExpiration, CacheItemPriority.Normal, null);
+            if (content != null) cache.Add(key, content, DateTime.Now.AddMinutes(30));
          }
 
          return content;
       }
 
+      public static T Get<T>(string key)
+      {
+          return (T)cache.Get(key);
+      }
+
       #endregion
+
+      internal static bool Contains(string key)
+      {
+          return cache.Contains(key);
+      }
    }
 }
 

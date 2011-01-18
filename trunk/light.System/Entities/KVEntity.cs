@@ -21,7 +21,7 @@ namespace light.System.Entities
       public string Value;
 
       /// <summary>
-      ///  过期时间
+      ///  过期时间(小时)
       /// </summary>
       public int Expiration;
 

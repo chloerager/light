@@ -20,22 +20,22 @@ namespace light.System.Controller
         public static int GetStatCount(string key, Func<int> Count)
         {
             int total = 0;
-            if (CacheService.Contains(key))
-                total = CacheService.Get<int>(key);
+            //if (CacheService.Contains(key))
+            //    total = CacheService.Get<int>(key);
 
-            if (total <= 0)
-            {
-                StatInfoEntity entity = SysInfo.GetStatInfo(key);
+            //if (total <= 0)
+            //{
+            //    StatInfoEntity entity = SysInfo.GetStatInfo(key);
 
-                if (entity != null && (DateTime.Now.Date - entity.StatDate.Date).Days <= entity.Expiration) total = entity.Value;
-                else
-                {
-                    total = Count();
-                    if (total > 0) SysInfo.SetStatInfo(key, total, DateTime.Now);
-                }
+            //    if (entity != null && (DateTime.Now.Date - entity.StatDate.Date).Days <= entity.Expiration) total = entity.Value;
+            //    else
+            //    {
+            //        total = Count();
+            //        if (total > 0) SysInfo.SetStatInfo(key, total, DateTime.Now);
+            //    }
 
-                if (total > 0)  CacheService.Add(key, total, DateTimeOffset.Now..FromDays(1));
-            }
+            //    if (total > 0)  CacheService.Add(key, total, DateTimeOffset.Now);
+            //}
 
             return total;
         }
@@ -43,14 +43,14 @@ namespace light.System.Controller
         public static string GetHtml(string key, Func<string> Html, int expiration)
         {
             string html = null;
-            if (CacheService.Contains(key))
-                html = CacheService.Get<string>(key);
+            //if (CacheService.Contains(key))
+            //    html = CacheService.Get<string>(key);
 
-            if (string.IsNullOrEmpty(html))
-            {
-                html = Html();
-                if (!string.IsNullOrEmpty(html)) CacheService.Add(key, html, TimeSpan.FromMinutes(expiration));
-            }
+            //if (string.IsNullOrEmpty(html))
+            //{
+            //    html = Html();
+            //    if (!string.IsNullOrEmpty(html)) CacheService.Add(key, html, TimeSpan.FromMinutes(expiration));
+            //}
 
             return html;
         }

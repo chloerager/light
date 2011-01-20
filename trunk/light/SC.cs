@@ -123,6 +123,6 @@
 
    public struct ErrorInfo
    { 
-      public const string ENTITY_NOT_EXIST = "对不起，没有找到指定的资源，该资源可能被和谐了！";
+      public const string ENTITY_NOT_EXIST = "对不起，文件已被删除或变更位置！";
    }
 }

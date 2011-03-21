@@ -15,10 +15,24 @@ namespace light.System
    /// <typeparam name="T">目标实体类型</typeparam>
    public class EB<T> where T : class,new()
    {
+      /// <summary>
+      ///  定义一个转换数据源到实体对象的委托。
+      /// </summary>
+      /// <param name="dr">包含数据源的DataReader</param>
+      /// <returns>返回对应的实体对象</returns>
       public delegate T ToEntityCallback(IDataReader dr);
 
       private EB() { }
 
+      /// <summary>
+      ///  根据查询条件获取指定类型的对象
+      /// </summary>
+      /// <param name="connectionString">连接串</param>
+      /// <param name="commandType"></param>
+      /// <param name="commandText"></param>
+      /// <param name="callback"></param>
+      /// <param name="commandParameters"></param>
+      /// <returns></returns>
       public static T Get(string connectionString, CommandType commandType, string commandText, ToEntityCallback callback, params SqlParameter[] commandParameters)
       {
          T t = null;

@@ -32,17 +32,17 @@ namespace light.System.DAL
                new SqlParameter("@name", key));
         }
 
-        public static int Update(string name, string value)
+        public static int Update(string key, string value)
         {
             return DBH.ExecuteSP(QA.DBCS_MAIN, "usp_update_keyvalue",
-               new SqlParameter("@name", name),
+               new SqlParameter("@name", key),
                new SqlParameter("@value", value));
         }
 
-        public static int Update(string name, string value, int expiration)
+        public static int Update(string key, string value, int expiration)
         {
             return DBH.ExecuteSP(QA.DBCS_MAIN, "usp_update_keyvalue",
-               new SqlParameter("@name", name),
+               new SqlParameter("@name", key),
                new SqlParameter("@value", value),
                new SqlParameter("@expiration", expiration));
         }

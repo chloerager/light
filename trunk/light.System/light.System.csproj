@@ -44,6 +44,7 @@
     <Compile Include="Controller\InfoController.cs" />
     <Compile Include="DAL\KV.cs" />
     <Compile Include="DAL\EB.cs" />
+    <Compile Include="DAL\TinyURL.cs" />
     <Compile Include="Entities\Attributes.cs" />
     <Compile Include="Entities\KVEntity.cs" />
     <Compile Include="MethodHandler.cs" />

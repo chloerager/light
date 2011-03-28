@@ -105,6 +105,17 @@ namespace light
       }
 
       /// <summary>
+      ///  获取静态数据库连接串
+      /// </summary>
+      public static string DBCS_STATIC
+      {
+         get 
+         {
+            return QA.GetConfig("DBCS_STATIC", "");
+         }
+      }
+
+      /// <summary>
       /// 返回客户端的IP地址
       /// </summary>
       public static string ClientIP

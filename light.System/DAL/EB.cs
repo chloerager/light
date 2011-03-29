@@ -25,12 +25,12 @@ namespace light.System
       private EB() { }
 
       /// <summary>
-      ///  根据查询条件获取指定类型的对象
+      ///  根据查询条件获取指定类型的对象，需要传递Entity Build Callback
       /// </summary>
       /// <param name="connectionString">连接串</param>
       /// <param name="commandType"></param>
       /// <param name="commandText"></param>
-      /// <param name="callback"></param>
+      /// <param name="callback">Entity Build方法</param>
       /// <param name="commandParameters"></param>
       /// <returns></returns>
       public static T Get(string connectionString, CommandType commandType, string commandText, ToEntityCallback callback, params SqlParameter[] commandParameters)
@@ -52,6 +52,14 @@ namespace light.System
          return t;
       }
 
+      /// <summary>
+      ///  根据查询条件自动生成对应的对象，不需要传递Entity Build Callback，但需要实体对象定义对应的属性。
+      /// </summary>
+      /// <param name="connectionString"></param>
+      /// <param name="commandType"></param>
+      /// <param name="commandText"></param>
+      /// <param name="commandParameters"></param>
+      /// <returns></returns>
       public static T Get(string connectionString, CommandType commandType, string commandText, params SqlParameter[] commandParameters)
       {
          T t = null;

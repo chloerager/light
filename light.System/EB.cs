@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using System.Reflection;
 using light.System.Entities;
 
-namespace light.System
+namespace light
 {
    /// <summary>
    ///  Entity Builder

@@ -79,6 +79,29 @@ namespace light
          return t;
       }
 
+      public static IList<T> List(string connectionString, CommandType commandType, string commandText, params SqlParameter[] commandParameters)
+      {
+         IList<T> tList = null;
+         using (IDataReader dr = DBH.ExecuteReader(connectionString, commandType, commandText, commandParameters))
+         {
+            if (dr != null)
+            {
+               try
+               {
+                  tList = new List<T>();
+                  while (dr.Read())
+                  {
+                     tList.Add(Build(dr));
+                  }
+               }
+               catch { }
+               finally { dr.Close(); }
+            }
+         }
+
+         return tList;
+      }
+
       public static IList<T> List(string connectionString, CommandType commandType, string commandText, ToEntityCallback callback, params SqlParameter[] commandParameters)
       {
          IList<T> tList = null;

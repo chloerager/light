@@ -316,11 +316,17 @@ namespace light
          return DBH.ExecuteText(connectionString, "UPDATE " + tableName + " SET " + fieldName + "=" + fieldName + "+1 WHERE " + priKey + "='" + priValue + "'");
       }
 
+      /// <summary>
+      ///  检查是否
+      /// </summary>
+      /// <param name="connectionString"></param>
+      /// <param name="table"></param>
+      /// <param name="field"></param>
+      /// <param name="value"></param>
+      /// <returns></returns>
       public static bool Exists(string connectionString, string table, string field, string value)
       {
-         return DBH.GetBoolean(connectionString, CommandType.StoredProcedure, SP_EXIST,
-            new SqlParameter("@table", table),
-            new SqlParameter("@field", field),
+         return DBH.GetBoolean(connectionString, CommandType.Text,"SELECT COUNT(*) AS VALUE FROM " + table + " WHERE " + field + "=@value",
             new SqlParameter("@value", value));
       }
 

@@ -5,32 +5,48 @@ using System.Web;
 using System.Web.Caching;
 using System.Runtime.Caching;
 
-namespace light.System
+namespace light
 {
     /// <summary>
     ///  缓存服务，支持内存缓存和分布式缓存。
     /// </summary>
    public sealed class CacheService
    {
-       private readonly static MemoryCache cache = MemoryCache.Default;
+      /// <summary>
+      ///  进程内缓存服务
+      /// </summary>
+      private readonly static MemoryCache cache = MemoryCache.Default;
 
       private CacheService() { }
 
       #region support-cache-framework
 
-      public static string Get(string key)
+      public static object Get(string key)
       {
-         return cache.Get(key) as string;
+         return cache.Get(key);
       }
 
-      public static void Add(string key, string content)
+      public static void Add(string key, object content)
       {
-         cache.Add(key, content, DateTime.Now.AddMilliseconds(30));
+         cache.Add(key, content, DateTime.Now.AddHours(1));
       }
 
-      public static void Add(string key, string content, DateTimeOffset expiration)
+      public static void Add(string key, object content, DateTimeOffset expiration)
       {
           cache.Add(key, content, expiration);
+      }
+
+      /// <summary>
+      ///  访问后延迟十分钟
+      /// </summary>
+      /// <param name="key"></param>
+      /// <param name="content"></param>
+      public static void AddSliding(string key, object content)
+      {
+         cache.Add(key, content, new CacheItemPolicy()
+         {
+            SlidingExpiration = TimeSpan.FromMinutes(10)
+         });
       }
 
       /// <summary>
@@ -72,6 +88,13 @@ namespace light.System
          return content;
       }
 
+      public static void Remove(string key)
+      {
+         cache.Remove(key);
+
+         //TODO: notify other server.
+      }
+
       /// <summary>
       /// Get the cache content associated with the specified key from the cache host.
       /// </summary>
@@ -105,6 +128,19 @@ namespace light.System
          return content;
       }
 
+      public static TOut Build<TIn,TOut>(string key,TIn tin,Func<TIn, TOut> callback) where TOut : class
+      {
+         TOut t = cache.Get(key) as TOut;
+
+         if (t == null)
+         {
+            t = callback(tin);
+            if (t != null) cache.Add(key, t, DateTimeOffset.Now.AddMinutes(30));
+         }
+
+         return t;
+      }
+
       public static string Get<T>(string key, int count, Func<int, IList<T>> listCallback, Func<T, string> contentCallback)
       {
          string content = cache.Get(key) as string;
@@ -133,7 +169,7 @@ namespace light.System
 
       #endregion
 
-      internal static bool Contains(string key)
+      public static bool Contains(string key)
       {
           return cache.Contains(key);
       }

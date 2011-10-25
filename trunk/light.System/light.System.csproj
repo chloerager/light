@@ -8,7 +8,7 @@
     <ProjectGuid>{29E674F9-4972-4E28-A40F-C89256593B38}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>light.System</RootNamespace>
+    <RootNamespace>light</RootNamespace>
     <AssemblyName>light.System</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -17,7 +17,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -35,20 +35,62 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ajax\GoHandler.cs" />
+    <Compile Include="Ajax\ImageAjaxMethods.cs" />
+    <Compile Include="Ajax\ReceiveHandler.cs" />
+    <Compile Include="Ajax\EventRequestHandler.cs" />
+    <Compile Include="Ajax\StaticAjaxMethods.cs" />
+    <Compile Include="Ajax\UserAjaxMethods.cs" />
+    <Compile Include="Ajax\AjaxHandler.cs" />
+    <Compile Include="Ajax\HandlerFactory.cs" />
+    <Compile Include="Ajax\IAjaxMethods.cs" />
     <Compile Include="CacheService.cs" />
-    <Compile Include="Controller\InfoController.cs" />
-    <Compile Include="DAL\KV.cs" />
-    <Compile Include="DAL\TinyURL.cs" />
-    <Compile Include="EB.cs" />
-    <Compile Include="Entities\Attributes.cs" />
+    <Compile Include="Data\FileDB.cs" />
+    <Compile Include="Data\LinkData.cs" />
+    <Compile Include="Data\SiteData.cs" />
+    <Compile Include="Entities\AttachmentEntity.cs" />
+    <Compile Include="Entities\LinkEntity.cs" />
+    <Compile Include="Entities\RoleEntity.cs" />
+    <Compile Include="EventFeed.cs" />
+    <Compile Include="EventTemplate.cs" />
+    <Compile Include="FileInfo.cs" />
+    <Compile Include="Link.cs" />
+    <Compile Include="Role.cs" />
+    <Compile Include="SiteSetting.cs" />
+    <Compile Include="UserAccount.cs" />
+    <Compile Include="District.cs" />
+    <Compile Include="Env.cs" />
+    <Compile Include="Info.cs" />
+    <Compile Include="Keyword.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="Data\RoleData.cs" />
+    <Compile Include="Data\UserData.cs" />
+    <Compile Include="Data\AjaxData.cs" />
+    <Compile Include="Data\DistrictData.cs" />
+    <Compile Include="Data\EventData.cs" />
+    <Compile Include="Data\KeywordData.cs" />
+    <Compile Include="Data\TinyURL.cs" />
+    <Compile Include="Entities\ActionEntity.cs" />
+    <Compile Include="Entities\EventDataEntity.cs" />
+    <Compile Include="Entities\EventEntity.cs" />
+    <Compile Include="Entities\EventType.cs" />
+    <Compile Include="Entities\IUserStatusEntity.cs" />
+    <Compile Include="Entities\UserEntity.cs" />
+    <Compile Include="Entities\DistrictEntity.cs" />
     <Compile Include="Entities\KVEntity.cs" />
-    <Compile Include="MethodHandler.cs" />
+    <Compile Include="Entities\LocationEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQA.cs" />
+    <Compile Include="Entities\UserStatusEntity.cs" />
+    <Compile Include="Web\HomeMenu.cs" />
+    <Compile Include="Web\JavaScriptData.cs" />
+    <Compile Include="Web\OverHead.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\light\light.csproj">

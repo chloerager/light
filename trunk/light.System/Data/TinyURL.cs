@@ -5,7 +5,7 @@ using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace light.System.DAL
+namespace light.Data
 {
     public sealed class TinyURL
     {

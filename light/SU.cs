@@ -8,58 +8,8 @@ namespace light
    /// <summary>
    /// 关于字符串的一些操作
    /// </summary>
-   public class STR
+   public class SU
    {
-      /// <summary>
-      /// 成功
-      /// </summary>
-      public const string JSON_SUCCESS = "{\"success\":\"1\"}";
-      /// <summary>
-      /// 失败
-      /// </summary>
-      public const string JSON_FAILED = "{\"success\":\"0\"}";
-      /// <summary>
-      /// 参数异常
-      /// </summary>
-      public const string JSON_PARMA_EXCEPTION = "{\"success\":\"-1\"}";
-
-      /// <summary>
-      /// 生成JSON字符串
-      /// </summary>
-      /// <param name="k">多个key请用","进行链接,并保证k和v的数量一致</param>
-      /// <param name="v">key对应的值</param>
-      /// <returns>如果正常返回标准的JSON字符串。</returns>
-      public static string JSON(string k, string v)
-      {
-         string json = "{";
-         string[] keys = k.Split(',');
-         string[] values = v.Split(',');
-
-         if (keys.Length == values.Length)
-         {
-            int i = 0;
-            for (; i < keys.Length-1; i++)
-            { 
-               json += "\"" + keys[i] + "\":\"" + values[i].Replace("\"","\\\"") + "\",";
-            }
-
-            json += "\"" + keys[i] + "\":\"" + values[i].Replace("\"", "\\\"") + "\"}";
-         }
-
-         return json;
-      }
-
-      public static string JSON(int success)
-      {
-         return string.Format("var result = {{\"success\":\"{0}\",\"message\":\"\"}}", success);
-      }
-
-      public static string JSON(int success, string message)
-      {
-         message = message.Replace("\"", "\\\"");
-         return string.Format("var result = {{\"success\":\"{0}\",\"message\":\"{1}\"}}", success, message);
-      }
-
       public static string CleanHTML(string src)
       { 
          return Regex.Replace(src,"(<[^>]*>)|&[a-z#0-9]+;","");
@@ -95,21 +45,21 @@ namespace light
       /// <summary>
       /// 截取length指定的字符串长度
       /// </summary>
-      /// <param name="src"></param>
+      /// <param name="s"></param>
       /// <param name="length"></param>
       /// <returns></returns>
-      public static string Cut(string src, int length)
+      public static string Cut(string s, int length)
       {
-         if (string.IsNullOrEmpty(src)) return src;
-         if (src.Length <= length) return src;
-         return src.Substring(0, length);
+         if (string.IsNullOrEmpty(s)) return s;
+         if (s.Length <= length) return s;
+         return s.Substring(0, length);
       }
 
-      public static string DottedCut(string src, int length)
+      public static string DottedCut(string s, int length)
       {
-         if (string.IsNullOrEmpty(src)) return src;
-         if (src.Length <= length) return src;
-         return src.Substring(0, length) + "...";
+         if (string.IsNullOrEmpty(s)) return s;
+         if (s.Length <= length) return s;
+         return s.Substring(0, length) + "...";
       }
 
       /// <summary>
@@ -148,6 +98,14 @@ namespace light
       public static string SQLLineBreak(string src)
       {
          return SQL(src).Replace("\r\n", "<br/>");
+      }
+
+      public static string Tags(string s)
+      {
+         if (string.IsNullOrEmpty(s)) return null;
+         if (s.Contains(",")) s = s.Replace(',', ' ');
+         if (s.Contains("，")) s = s.Replace('，', ' ');
+         return s;
       }
    }
 }

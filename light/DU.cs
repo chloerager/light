@@ -65,61 +65,10 @@ namespace light
       /// </summary>
       public const string TITLE = "title";
 
-      public static string ACCOUNTID = "account_id";
-   }
-
-   public sealed class DRM
-   {
-      private IDataReader dr = null;
-      private DRM() { }
-      public DRM(IDataReader reader) { dr = reader; }
-
-      public int GetInt32(string name)
-      {
-         return dr.GetInt32(dr.GetOrdinal(name));
-      }
-
-      public string GetString(string name)
-      {
-         return dr.GetString(dr.GetOrdinal(name));
-      }
-
-      public bool GetBoolean(string name)
-      {
-         return dr.GetBoolean(dr.GetOrdinal(name));
-      }
-
-      public DateTime GetDateTime(string name)
-      {
-         return dr.GetDateTime(dr.GetOrdinal(name));
-      }
-
-      public DateTime Created
-      {
-         get { return dr.GetDateTime(dr.GetOrdinal(DF.CREATED)); }
-      }
-
-      public string Story
-      {
-         get { return dr.GetString(dr.GetOrdinal(DF.STORY)); }
-      }
-
-      public string Title
-      {
-         get { return dr.GetString(dr.GetOrdinal(DF.TITLE)); }
-      }
-
-      public string Name
-      {
-         get { return dr.GetString(dr.GetOrdinal(DF.NAME)); }
-      }
-
-      public int Id
-      {
-         get { return dr.GetInt32(dr.GetOrdinal(DF.ID)); }
-      }
-
-      public int AccountId { get { return dr.GetInt32(dr.GetOrdinal(DF.ACCOUNTID)); } }
+      /// <summary>
+      /// 帐户标识
+      /// </summary>
+      public const string ACCOUNTID = "account_id";
    }
 
    public struct UBP

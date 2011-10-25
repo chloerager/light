@@ -72,10 +72,21 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="JSON.cs" />
+    <Compile Include="Data\Attributes.cs" />
+    <Compile Include="Data\EB.cs" />
+    <Compile Include="HZ.cs" />
+    <Compile Include="IU.cs" />
+    <Compile Include="Json\IgnoreAttribute.cs" />
+    <Compile Include="Json\JsonPath.cs" />
+    <Compile Include="JU.cs" />
+    <Compile Include="Json\Getters.cs" />
+    <Compile Include="Json\JSON.cs" />
+    <Compile Include="Json\JsonParser.cs" />
+    <Compile Include="Json\JsonSerializer.cs" />
+    <Compile Include="Json\SafeDictionary.cs" />
     <Compile Include="SC.cs" />
     <Compile Include="CU.cs" />
-    <Compile Include="DBH.cs" />
+    <Compile Include="Data\DBH.cs" />
     <Compile Include="HTML.cs" />
     <Compile Include="PinYin.cs">
       <SubType>Code</SubType>
@@ -84,7 +95,10 @@
     <Compile Include="SiteRank.cs" />
     <Compile Include="SPM.cs" />
     <Compile Include="SB.cs" />
-    <Compile Include="STR.cs" />
+    <Compile Include="SU.cs" />
+    <Compile Include="Tmpl\Template.cs" />
+    <Compile Include="Tmpl\Tmpl.cs" />
+    <Compile Include="DTU.cs" />
     <Compile Include="URLite.cs" />
     <Compile Include="MU.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -107,7 +121,9 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Feed\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

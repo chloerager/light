@@ -35,6 +35,19 @@ namespace light
       }
 
       /// <summary>
+      ///  
+      /// </summary>
+      /// <param name="value"></param>
+      /// <returns></returns>
+      public static byte ToByte(string value)
+      {
+         if (string.IsNullOrEmpty(value)) return 0;
+         byte ret = 0;
+         byte.TryParse(value, out ret);
+         return ret;
+      }
+
+      /// <summary>
       /// Convert the value of the speicified object to its equivalent string representation.
       /// </summary>
       /// <param name="value">An object that supplies the value to convert, or null</param>

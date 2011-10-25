@@ -27,7 +27,7 @@ namespace light
                else if (k < 0xB8C1) initials += "f";
                else if (k < 0xB9FE) initials += "g";
                else if (k < 0xBBF7) initials += "h";
-               else if (k < 0xBFA6) initials += "g";
+               else if (k < 0xBFA6) initials += "j";
                else if (k < 0xC0AC) initials += "k";
                else if (k < 0xC2E8) initials += "l";
                else if (k < 0xC4C3) initials += "m";

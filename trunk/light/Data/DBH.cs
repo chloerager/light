@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.SqlClient;
-using System.Data;
 using System.Collections;
-using light;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace light
 {
@@ -32,14 +29,19 @@ namespace light
 
       public static int ExecuteText(string connectionString,string cmdText, params SqlParameter[] commandParameters)
       {
-         SqlCommand cmd = new SqlCommand();
-         using (SqlConnection conn = new SqlConnection(connectionString))
+         try
          {
-            PrepareCommand(cmd, conn, null, CommandType.Text, cmdText, commandParameters);
-            int val = cmd.ExecuteNonQuery();
-            cmd.Parameters.Clear();
-            return val;
+            SqlCommand cmd = new SqlCommand();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+               PrepareCommand(cmd, conn, null, CommandType.Text, cmdText, commandParameters);
+               int val = cmd.ExecuteNonQuery();
+               cmd.Parameters.Clear();
+               return val;
+            }
          }
+         catch { }
+         return -1;
       }
 
       public static int ExecuteSP(string connectionString, string cmdText, params SqlParameter[] commandParameters)
@@ -175,7 +177,7 @@ namespace light
 
       #region PrepareCommand
 
-      private static void PrepareCommand(SqlCommand cmd, SqlConnection conn, SqlTransaction trans, CommandType cmdType, string cmdText, SqlParameter[] cmdParms)
+      private static void PrepareCommand(SqlCommand cmd, SqlConnection conn, SqlTransaction trans, CommandType cmdType, string cmdText, SqlParameter[] cmdParams)
       {
          if (conn.State != ConnectionState.Open) conn.Open();
 
@@ -184,22 +186,22 @@ namespace light
          cmd.CommandText = cmdText;
 
          if (trans != null) cmd.Transaction = trans;
-         if (cmdParms != null && cmdParms.Length > 0) cmd.Parameters.AddRange(cmdParms);
+         if (cmdParams != null && cmdParams.Length > 0) cmd.Parameters.AddRange(cmdParams);
       }
 
       #endregion
 
       #region Utility
 
-      public static int GetInt32(string connStr, CommandType cmdType, string cmdText, params SqlParameter[] cmdParms)
+      public static int GetInt32(string connStr, CommandType cmdType, string cmdText, params SqlParameter[] cmdParams)
       {
          int ret = -1;
 
-         using (IDataReader dr = ExecuteReader(connStr, cmdType, cmdText, cmdParms))
+         using (IDataReader dr = ExecuteReader(connStr, cmdType, cmdText, cmdParams))
          {
             if (dr != null && dr.Read())
             {
-               ret = Convert.ToInt32(dr[0]);
+               if (!(dr[0] is DBNull)) ret = Convert.ToInt32(dr[0]);
                dr.Close();
             }
          }
@@ -207,20 +209,42 @@ namespace light
          return ret;
       }
 
-      public static string GetString(string connStr, CommandType cmdType, string cmdText, params SqlParameter[] cmdParms)
+      public static string GetString(string connStr, CommandType cmdType, string cmdText, params SqlParameter[] cmdParams)
       {
          string ret = null;
 
-         using (IDataReader dr = ExecuteReader(connStr, cmdType, cmdText, cmdParms))
+         using (IDataReader dr = ExecuteReader(connStr, cmdType, cmdText, cmdParams))
          {
             if (dr != null)
             {
-               if (dr.Read()) ret = CU.ToStr(dr[0]);
+               if (dr.Read()) ret = dr.GetString(0);
                dr.Close();
             }
          }
 
          return ret;
+      }
+
+
+      public static TPair<T1, T2> GetPair<T1, T2>(string connStr, CommandType cmdType, string cmdText, params SqlParameter[] cmdParams)
+      {
+         TPair<T1,T2> pair = null;
+
+         using (IDataReader dr = ExecuteReader(connStr, cmdType, cmdText, cmdParams))
+         {
+            if (dr != null)
+            {
+               pair = new TPair<T1, T2>();
+               if (dr.Read())
+               {
+                  pair.k = (T1)dr[0];
+                  pair.v = (T2)dr[1];
+               }
+               dr.Close();
+            }
+         }
+
+         return pair;
       }
 
       /// <summary>
@@ -228,11 +252,11 @@ namespace light
       /// </summary>
       /// <param name="sql">要执行的SQL语句</param>
       /// <returns>返回的结果集</returns>
-      public static string GetList(string connStr, CommandType cmdType, string cmdText, SqlParameter[] cmdParms)
+      public static string GetList(string connStr, CommandType cmdType, string cmdText, SqlParameter[] cmdParams)
       {
          string ret = null;
 
-         using (IDataReader dr = ExecuteReader(connStr, cmdType, cmdText, cmdParms))
+         using (IDataReader dr = ExecuteReader(connStr, cmdType, cmdText, cmdParams))
          {
             if (dr != null)
             {
@@ -246,11 +270,11 @@ namespace light
          else return ret.TrimEnd(',');
       }
 
-      public static bool GetBoolean(string connStr, CommandType cmdType, string cmdText, params SqlParameter[] cmdParms)
+      public static bool GetBoolean(string connStr, CommandType cmdType, string cmdText, params SqlParameter[] cmdParams)
       {
          bool ret = false;
 
-         using (IDataReader dr = ExecuteReader(connStr, cmdType, cmdText, cmdParms))
+         using (IDataReader dr = ExecuteReader(connStr, cmdType, cmdText, cmdParams))
          {
             if (dr != null)
             {
@@ -260,6 +284,93 @@ namespace light
          }
 
          return ret;
+      }
+
+      public static IList<T> GetList<T>(string connStr, CommandType cmdType, string cmdText, params SqlParameter[] cmdParams)
+      {
+         IList<T> list = null;
+
+         using (IDataReader dr = ExecuteReader(connStr, cmdType, cmdText, cmdParams))
+         {
+            if (dr != null)
+            {
+               list = new List<T>();
+               while (dr.Read())
+               {
+                  list.Add((T)dr.GetValue(0));
+               }
+
+               dr.Close();
+            }
+         }
+
+         return list;
+      }
+
+      public static HashSet<T> GetHashSet<T>(string connStr, CommandType cmdType, string cmdText, params SqlParameter[] cmdParams)
+      {
+         HashSet<T> hs = null;
+
+         using (IDataReader dr = ExecuteReader(connStr, cmdType, cmdText, cmdParams))
+         {
+            if (dr != null)
+            {
+               hs = new HashSet<T>();
+               while (dr.Read())
+               {
+                  hs.Add((T)dr.GetValue(0));
+               }
+
+               dr.Close();
+            }
+         }
+
+         return hs;
+      }
+
+      public static void Out<T1, T2>(string connStr, CommandType cmdType, string cmdText, out T1 t1, out T2 t2, params SqlParameter[] cmdParams)
+      {
+         t1 = default(T1);
+         t2 = default(T2);
+
+         using (IDataReader dr = ExecuteReader(connStr, cmdType, cmdText, cmdParams))
+         {
+            if (dr != null)
+            {
+               if (dr.Read())
+               {
+                  SafeGet(out t1,dr[0]);
+                  SafeGet(out t2,dr[1]);
+               }
+               dr.Close();
+            }
+         }
+      }
+
+      public static IDictionary<string, int> GetDictionary(string connStr, CommandType cmdType, string cmdText, params SqlParameter[] cmdParams)
+      {
+         IDictionary<string, int> dict = null;
+         using (IDataReader dr = ExecuteReader(connStr, cmdType, cmdText, cmdParams))
+         {
+            if (dr != null)
+            {
+               dict = new Dictionary<string, int>();
+               while (dr.Read())
+               {
+                  dict.Add(dr.GetString(0), dr.GetInt32(1));
+               }
+               dr.Close();
+            }
+         }
+
+         return dict;
+      }
+
+      private static void SafeGet<T>(out T t,object o)
+      {
+         t = default(T);
+         if (t is bool) t = (T)(object)Convert.ToBoolean(o);
+         else t = (T)o;
       }
 
       /// <summary>
@@ -345,6 +456,9 @@ namespace light
       /// </summary>
       public const string SP_PAGING = "usp_paging";
 
+      #endregion
+
+      #region TRANSACTION
       #endregion
    }
 }

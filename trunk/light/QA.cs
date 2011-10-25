@@ -104,6 +104,14 @@ namespace light
          }
       }
 
+      public static string DBCS_APP
+      {
+         get
+         {
+            return QA.GetConfig("DBCS_APP", "");
+         }
+      }
+
       /// <summary>
       ///  获取静态数据库连接串
       /// </summary>
@@ -130,6 +138,24 @@ namespace light
             catch { }
 
             return clientip;
+         }
+      }
+
+      public static bool IsAuthenticated
+      {
+         get 
+         {
+            HttpContext current = HttpContext.Current;
+            if (current != null) return current.Request.IsAuthenticated;
+            return false;
+         }
+      }
+
+      public static string DBCS_CMS
+      {
+         get
+         {
+            return QA.GetConfig("DBCS_CMS", "");
          }
       }
    }

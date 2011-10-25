@@ -5,7 +5,7 @@ using System.Web;
 
 namespace light
 {
-   public class MU
+   public sealed class MU
    {
       private static Random random = new Random((int)DateTime.Now.Ticks);
       public static int Next(int minValue,int maxValue)
@@ -113,4 +113,21 @@ namespace light
          return Key.ToString();
       }
    }
+
+   public class TPair<TKey, TValue>
+   {
+      public TKey k;
+      public TValue v;
+
+      public TPair()
+      { }
+
+      public TPair(TKey k, TValue v)
+      {
+         this.k = k;
+         this.v = v;
+      }
+   }
+
+   
 }

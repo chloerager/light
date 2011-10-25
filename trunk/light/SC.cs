@@ -59,70 +59,109 @@
       /// 字符串布尔false
       /// </summary>
       public const string STR_FALSE = "0";
+
+
+      public struct Sex
+      {
+         /// <summary>
+         /// 男性
+         /// </summary>
+         public const int MALE = 1;
+
+         /// <summary>
+         /// 女性
+         /// </summary>
+         public const int FEMALE = 0;
+
+         /// <summary>
+         /// 无性别的人
+         /// </summary>
+         public const int UNKOWN = 2;
+      }
+
+      public struct IncField
+      {
+         public const string VIEWS = "views";
+         public const string DING = "ding";
+         public const string MARS = "mars";
+         public const string COMMENTS = "comments";
+      }
+
+      /// <summary>
+      /// 实体的状态
+      /// </summary>
+      public struct EntityState
+      {
+
+         /// <summary>
+         /// 已发布
+         /// </summary>
+         public const string Published = "0";
+
+         /// <summary>
+         /// 审批中
+         /// </summary>
+         public const string Apply = "1";
+
+         /// <summary>
+         /// 草稿
+         /// </summary>
+         public const string Draft = "2";
+
+         /// <summary>
+         /// 垃圾
+         /// </summary>
+         public const string Trash = "3";
+
+         /// <summary>
+         /// 系统垃圾
+         /// </summary>
+         public const string SysTrash = "4";
+
+         public readonly static string[] States = new string[] { "已发布", "审盒中", "草稿", "垃圾箱", "系统垃圾" };
+      }
+
+      /// <summary>
+      ///  Error Info
+      /// </summary>
+      public struct EI
+      {
+         public const string ENTITY_NOT_EXIST = "对不起，文件已被删除或变更位置！";
+      }
+
+      /// <summary>
+      ///  Cookie Name
+      /// </summary>
+      /// <remarks>部分名字使用反转方式进行混淆</remarks>
+      public struct CN
+      {
+         /// <summary>
+         ///  账户名称
+         /// </summary>
+         public const string A_NAME = "a_eman";
+
+         /// <summary>
+         ///  帐号标识
+         /// </summary>
+         public const string A_ID = "a_di";
+
+         /// <summary>
+         ///  来源地址
+         /// </summary>
+         public const string FROM = "f";
+      }
+
+      /// <summary>
+      ///  URL KEY
+      /// </summary>
+      public struct UK
+      {
+         /// <summary>
+         ///  来源地址
+         /// </summary>
+         public const string FROM = "f";
+      }
    }
 
-   public struct Sex
-   {
-      /// <summary>
-      /// 男性
-      /// </summary>
-      public const int MALE = 1;
-
-      /// <summary>
-      /// 女性
-      /// </summary>
-      public const int FEMALE = 0;
-
-      /// <summary>
-      /// 无性别的人
-      /// </summary>
-      public const int UNKOWN = 2;
-   }
-
-   public struct IncField
-   {
-      public const string VIEWS = "views";
-      public const string DING = "ding";
-      public const string MARS = "mars";
-      public const string COMMENTS = "comments";
-   }
-
-   /// <summary>
-   /// 实体的状态
-   /// </summary>
-   public struct EntityState
-   {
-
-      /// <summary>
-      /// 已发布
-      /// </summary>
-      public const string Published = "0";
-
-      /// <summary>
-      /// 审批中
-      /// </summary>
-      public const string Apply = "1";
-
-      /// <summary>
-      /// 草稿
-      /// </summary>
-      public const string Draft = "2";
-
-      /// <summary>
-      /// 垃圾
-      /// </summary>
-      public const string Trash = "3";
-
-      /// <summary>
-      /// 系统垃圾
-      /// </summary>
-      public const string SysTrash = "4";
-
-      public readonly static string[] States = new string[] {"已发布","审盒中","草稿","垃圾箱","系统垃圾"};
-   }
-
-   public struct ErrorInfo
-   { 
-      public const string ENTITY_NOT_EXIST = "对不起，文件已被删除或变更位置！";
-   }
+   
 }

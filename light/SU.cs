@@ -16,7 +16,7 @@ namespace light
       }
 
       /// <summary>
-      /// 清楚;:!,.'\^&~'*?" /等符号
+      /// 清除;:!,.'\^&~'*?" /等符号
       /// </summary>
       /// <param name="src"></param>
       /// <returns></returns>
@@ -35,13 +35,6 @@ namespace light
          return Regex.Replace(src, "(\\s{2,})", " ");
       }
 
-      public static bool IsNullOREmpty(string src)
-      {
-         if(src == null || src == string.Empty) return true;
-
-         return false;
-      }
-
       /// <summary>
       /// 截取length指定的字符串长度
       /// </summary>
@@ -55,6 +48,12 @@ namespace light
          return s.Substring(0, length);
       }
 
+      /// <summary>
+      ///  截取length指定的字符串长度，并添加...作为后缀。
+      /// </summary>
+      /// <param name="s"></param>
+      /// <param name="length"></param>
+      /// <returns></returns>
       public static string DottedCut(string s, int length)
       {
          if (string.IsNullOrEmpty(s)) return s;

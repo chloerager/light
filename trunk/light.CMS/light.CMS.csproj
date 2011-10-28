@@ -40,24 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Content.cs" />
-    <Compile Include="Data\CategoryData.cs" />
-    <Compile Include="Data\ContentData.cs" />
-    <Compile Include="Data\Quotation.cs" />
-    <Compile Include="Entities\CategoryEntity.cs" />
-    <Compile Include="Entities\ContentEntity.cs" />
-    <Compile Include="Entities\QuotationEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\light.System\light.System.csproj">
-      <Project>{29E674F9-4972-4E28-A40F-C89256593B38}</Project>
-      <Name>light.System</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\light\light.csproj">
-      <Project>{8B978397-2CF6-4102-A86A-C3F357F52923}</Project>
-      <Name>light</Name>
-    </ProjectReference>
+    <Folder Include="Controller\" />
+    <Folder Include="Entities\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

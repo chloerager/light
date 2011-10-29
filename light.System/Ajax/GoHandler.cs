@@ -10,6 +10,11 @@ namespace light.Ajax
    {
       public void ProcessRequest(HttpContext context)
       {
+         GoToUrl(context);
+      }
+
+      public static void GoToUrl(HttpContext context)
+      {
          string k = context.Request.QueryString["k"];
          if (string.IsNullOrEmpty(k) == false)
          {

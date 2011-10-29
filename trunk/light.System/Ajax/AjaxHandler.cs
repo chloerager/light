@@ -10,6 +10,11 @@ namespace light.Ajax
    {
       public void ProcessRequest(HttpContext context)
       {
+         Handle(context);
+      }
+
+      private static void Handle(HttpContext context)
+      {
          string cmd = context.Request.Params["m"];
          if (!string.IsNullOrEmpty(cmd))
          {
@@ -18,9 +23,10 @@ namespace light.Ajax
             else context.Response.Write(JU.Build(false, 404, "Ajax调用出错"));
          }
       }
+
       public bool IsReusable
       {
-         get{return false;}
+         get{return true;}
       }
    }
 }

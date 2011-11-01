@@ -54,10 +54,8 @@
 	background-color: white;
 }
 
-.dataTables_length {
-	width: 40%;
-	float: left;
-}
+.dataTables_length {width: 40%;float: left;font-size:12px;}
+.dataTables_length label,.dataTables_filter label{display:block;font-size:12px;font-weight:normal;font-family:Î¢ÈíÑÅºÚ,ËÎÌå;margin:2px;}
 
 .dataTables_filter {
 	width: 50%;

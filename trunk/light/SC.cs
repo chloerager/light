@@ -60,7 +60,6 @@
       /// </summary>
       public const string STR_FALSE = "0";
 
-
       public struct Sex
       {
          /// <summary>
@@ -160,6 +159,22 @@
          ///  来源地址
          /// </summary>
          public const string FROM = "f";
+      }
+
+      /// <summary>
+      ///  系统设置变量
+      /// </summary>
+      public struct Settings
+      {
+         /// <summary>
+         ///  注册需要邀请
+         /// </summary>
+         public const string SIGNUP_NEED_INVITED = "__signup_need_invited";
+
+         /// <summary>
+         ///  是否允许注册
+         /// </summary>
+         public const string ALLOW_SIGNUP = "__allow_signup";
       }
    }
 

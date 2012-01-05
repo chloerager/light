@@ -12,7 +12,7 @@ namespace light.Ajax
    public class ImageAjaxMethods
    {
       /// <summary>
-      ///  用户图像保存
+      ///  裁减并保存用户上传的图像
       /// </summary>
       /// <param name="context"></param>
       public static void SaveAvatar(HttpContext context)

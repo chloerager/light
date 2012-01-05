@@ -53,6 +53,7 @@
     <Compile Include="CacheService.cs" />
     <Compile Include="Data\FileDB.cs" />
     <Compile Include="Data\LinkData.cs" />
+    <Compile Include="Data\LogData.cs" />
     <Compile Include="Data\SiteData.cs" />
     <Compile Include="Entities\AttachmentEntity.cs" />
     <Compile Include="Entities\LinkEntity.cs" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using light.Entities;
+using light.Data;
 
 namespace light
 {
@@ -17,7 +18,7 @@ namespace light
       /// <param name="entity"></param>
       public static void Login(UserEntity entity)
       {
-         
+         //LogData
       }
    }
 }

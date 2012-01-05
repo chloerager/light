@@ -13,6 +13,38 @@ namespace light.Ajax
 {
    public class UserAjaxMethods
    {
+      /// <summary>
+      ///  响应账户注册请求
+      ///  成功：1 失败：0 邀请码错误：-1
+      /// </summary>
+      /// <param name="context"></param>
+      public static void Signup(HttpContext context)
+      {
+         string name = context.Request.Form["n"];
+         string pwd = context.Request.Form["p"];
+         string email = context.Request.Form["e"];
+         string code = context.Request.Form["c"];
+         string id = context.Request.Form["i"];
+
+         if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(pwd) || string.IsNullOrEmpty(email))
+         {
+            context.Response.Write(JU.Build(false, "数据输入不完整或者格式不正确!"));
+            context.Response.End();
+         }
+
+         if (UserAccount.Signup(name, pwd, email, code, id))
+         {
+            context.Response.Write(JU.Build(true, ""));
+            context.Response.End();
+         }
+
+         context.Response.Write(JU.Build(false, "注册失败，请联系管理员"));
+      }
+
+      /// <summary>
+      ///  处理用户登录请求
+      /// </summary>
+      /// <param name="context"></param>
       public static void Login(HttpContext context)
       {
          string name = context.Request.Form["n"];
@@ -162,34 +194,6 @@ namespace light.Ajax
          }
          context.Response.Write(JU.Build(false, "没有可用的邀请码!"));
          context.Response.End();
-      }
-
-      /// <summary>
-      ///  账户注册
-      ///  成功：1 失败：0 邀请码错误：-1
-      /// </summary>
-      /// <param name="context"></param>
-      public static void Signup(HttpContext context)
-      {
-         string name = context.Request.Form["n"];
-         string pwd = context.Request.Form["p"];
-         string email = context.Request.Form["e"];
-         string code = context.Request.Form["c"];
-         string id = context.Request.Form["i"];
-
-         if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(pwd) || string.IsNullOrEmpty(email))
-         {
-            context.Response.Write(JU.Build(false, "数据输入不完整或者格式不正确!"));
-            context.Response.End();
-         }
-
-         if (UserAccount.Signup(name, pwd, email, code, id))
-         {
-            context.Response.Write(JU.Build(true, ""));
-            context.Response.End();
-         }
-
-         context.Response.Write(JU.Build(false, "注册失败，请联系管理员"));
       }
    }
 }

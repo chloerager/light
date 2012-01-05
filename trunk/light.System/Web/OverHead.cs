@@ -19,7 +19,7 @@ namespace light.Web
          }
          else
          {
-            output.Write("<div class=\"fright\"><a href=\"/login\" class=\"noborder\">登录</a></div>");
+            output.Write("<div class=\"fright\"><a href=\"/login\" class=\"noborder\">登录</a><a href=\"/signup\">注册</a></div>");
          }
          output.Write("</div></div>");
       }

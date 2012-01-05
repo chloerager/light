@@ -285,6 +285,9 @@ namespace light
             //create feed of signup event
             EventFeed.CreateEvent(0, 5, id, -1, "signup", "");
 
+            //添加默认好友
+            
+
             //write cookie
             string nid = id.ToString();
             QA.SetCookie(FormsAuthentication.FormsCookieName,

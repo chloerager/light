@@ -84,6 +84,7 @@
     <Compile Include="Json\JsonParser.cs" />
     <Compile Include="Json\JsonSerializer.cs" />
     <Compile Include="Json\SafeDictionary.cs" />
+    <Compile Include="RID.cs" />
     <Compile Include="SC.cs" />
     <Compile Include="CU.cs" />
     <Compile Include="Data\DBH.cs" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using light;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,9 +19,7 @@ namespace light.Tools
 
       private void button1_Click(object sender, EventArgs e)
       {
-          //GETGB2312HZ hz = new GETGB2312HZ();
-          //hz.Parse();
-         ImportMySQL.Import();
+         MessageBox.Show(RID.ToRID(25400));
       }
    }
 }

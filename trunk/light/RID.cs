@@ -29,9 +29,28 @@ namespace light
          }
       }
 
-      public static int ToID(string rid)
+      public static uint ToID(string rid)
       {
-         return 0;
+         uint id = 0;
+
+         if (!string.IsNullOrEmpty(rid))
+         {
+            rid = rid.ToLower();
+            int l = rid.Length;
+            foreach (char a in rid)
+            {
+               if (char.IsLetterOrDigit(a))
+               {
+                  int idx = Array.IndexOf(_rid, a);
+
+                  if (idx >= 0) { id += (uint)(idx * Math.Pow(36, --l)); }
+                  else { --l; }
+               }
+               else { --l; }
+            }
+         }
+
+         return id;
       }
 
       public static string ToSID(string rid)

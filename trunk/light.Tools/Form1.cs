@@ -19,7 +19,8 @@ namespace light.Tools
 
       private void button1_Click(object sender, EventArgs e)
       {
-         MessageBox.Show(RID.ToRID(25400));
+         string rid = RID.ToRID(12960);
+         MessageBox.Show(rid+":"+RID.ToID(rid));
       }
    }
 }

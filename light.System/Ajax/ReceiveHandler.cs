@@ -167,7 +167,7 @@ namespace light.Ajax
 
       public bool IsReusable
       {
-         get { return true; }
+         get { return false; }
       }
    }
 

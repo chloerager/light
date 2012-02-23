@@ -92,6 +92,7 @@
     <Compile Include="Web\HomeMenu.cs" />
     <Compile Include="Web\JavaScriptData.cs" />
     <Compile Include="Web\OverHead.cs" />
+    <Compile Include="Web\Smarty.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\light\light.csproj">

@@ -97,8 +97,8 @@
     <Compile Include="SPM.cs" />
     <Compile Include="SB.cs" />
     <Compile Include="SU.cs" />
-    <Compile Include="Tmpl\Template.cs" />
-    <Compile Include="Tmpl\Tmpl.cs" />
+    <Compile Include="Template\Smarty.cs" />
+    <Compile Include="Template\Tmpl.cs" />
     <Compile Include="DTU.cs" />
     <Compile Include="URLite.cs" />
     <Compile Include="MU.cs" />

@@ -10,9 +10,7 @@ namespace light
    /// <typeparam name="TValue"></typeparam>
    internal class SafeDictionary<TKey, TValue>
    {
-      private readonly object _Padlock = new object();
       private readonly Dictionary<TKey, TValue> _Dictionary = new Dictionary<TKey, TValue>();
-
 
       public bool TryGetValue(TKey key, out TValue value)
       {
@@ -36,6 +34,7 @@ namespace light
          return ((ICollection<KeyValuePair<TKey, TValue>>)_Dictionary).GetEnumerator();
       }
 
+      private readonly object _Padlock = new object();
       public void Add(TKey key, TValue value)
       {
          lock (_Padlock)

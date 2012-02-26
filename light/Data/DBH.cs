@@ -460,5 +460,60 @@ namespace light
 
       #region TRANSACTION
       #endregion
+
+      #region Dictionary Wrapper
+
+      public static IDictionary<string, string> GetRow(string cs, string sql)
+      {
+         IDictionary<string, string> row = null;
+         using (IDataReader dr = ExecuteReader(cs, CommandType.Text, sql, null))
+         {
+            if (dr != null)
+            {
+               if (dr.Read())
+               {
+                  row = new Dictionary<string, string>();
+                  int fc = dr.FieldCount - 1;
+
+                  for (; fc > -1; fc--)
+                  {
+                     row.Add("${" + dr.GetName(fc) + "}", dr.GetValue(fc).ToString());
+                  }
+
+               }
+               dr.Close();
+            }
+         }
+
+         return row;
+      }
+
+      public static IList<IDictionary<string, object>> GetRows(string cs, string sql)
+      {
+         IList<IDictionary<string, object>> rows = new List<IDictionary<string, object>>();
+         using (IDataReader dr = ExecuteReader(cs, CommandType.Text, sql, null))
+         {
+            if (dr != null)
+            {
+               while (dr.Read())
+               {
+                  IDictionary<string, object>  row = new Dictionary<string, object>();
+                  int fc = dr.FieldCount - 1;
+
+                  for (; fc > -1; fc--)
+                  {
+                     row.Add("${" + dr.GetName(fc) + "}", dr.GetValue(fc));
+                  }
+
+                  rows.Add(row);
+               }
+               dr.Close();
+            }
+         }
+
+         return rows;
+      }
+
+      #endregion
    }
 }

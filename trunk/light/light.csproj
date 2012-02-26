@@ -83,7 +83,7 @@
     <Compile Include="Json\JSON.cs" />
     <Compile Include="Json\JsonParser.cs" />
     <Compile Include="Json\JsonSerializer.cs" />
-    <Compile Include="Json\SafeDictionary.cs" />
+    <Compile Include="SafeDictionary.cs" />
     <Compile Include="RID.cs" />
     <Compile Include="SC.cs" />
     <Compile Include="CU.cs" />
@@ -98,6 +98,7 @@
     <Compile Include="SB.cs" />
     <Compile Include="SU.cs" />
     <Compile Include="Template\Smarty.cs" />
+    <Compile Include="Template\SmartyData.cs" />
     <Compile Include="Template\Tmpl.cs" />
     <Compile Include="DTU.cs" />
     <Compile Include="URLite.cs" />

@@ -488,21 +488,22 @@ namespace light
          return row;
       }
 
-      public static IList<IDictionary<string, object>> GetRows(string cs, string sql)
+      public static IList<IDictionary<string, string>> GetRows(string cs, string sql,Func<string,object,string> format)
       {
-         IList<IDictionary<string, object>> rows = new List<IDictionary<string, object>>();
+         IList<IDictionary<string, string>> rows = new List<IDictionary<string, string>>();
          using (IDataReader dr = ExecuteReader(cs, CommandType.Text, sql, null))
          {
             if (dr != null)
             {
                while (dr.Read())
                {
-                  IDictionary<string, object>  row = new Dictionary<string, object>();
+                  IDictionary<string, string>  row = new Dictionary<string, string>();
                   int fc = dr.FieldCount - 1;
 
                   for (; fc > -1; fc--)
                   {
-                     row.Add("${" + dr.GetName(fc) + "}", dr.GetValue(fc));
+                     string name = dr.GetName(fc);
+                     row.Add("${" + name+ "}", format(name,dr.GetValue(fc)));
                   }
 
                   rows.Add(row);

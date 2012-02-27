@@ -503,7 +503,8 @@ namespace light
                   for (; fc > -1; fc--)
                   {
                      string name = dr.GetName(fc);
-                     row.Add("${" + name+ "}", format(name,dr.GetValue(fc)));
+                     if (format != null) row.Add("${" + name + "}", format(name, dr.GetValue(fc)));
+                     else row.Add("${" + name + "}", dr.GetValue(fc).ToString());
                   }
 
                   rows.Add(row);

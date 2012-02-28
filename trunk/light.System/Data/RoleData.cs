@@ -13,7 +13,7 @@ namespace light.Data
    {
       internal static IList<ActionEntity> GetActionList(int roleid)
       {
-         return EB<ActionEntity>.List(QA.DBCS_MAIN, CommandType.Text, "SELECT app_action.* FROM role_action INNER JOIN app_action ON actionid=app_action.id WHERE roleid=@roleid AND allowaccess=1 ORDER BY displayorder ASC",
+         return EB<ActionEntity>.List(QA.DBCS_MAIN, CommandType.Text, "SELECT app_action.* FROM role_action INNER JOIN app_action ON actionid=app_action.id WHERE roleid=@roleid AND allowaccess=1 AND app_action.enabled=1 ORDER BY displayorder ASC",
             new SqlParameter("@roleid", roleid));
       }
 

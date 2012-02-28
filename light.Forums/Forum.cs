@@ -29,14 +29,32 @@ namespace light.Forums
          return ForumData.GetThreads();
       }
 
-      internal static void SaveThread(int p, string p_2, string name, string story)
+      internal static int SaveThread(int bid,int uid, string uname, string name, string ip,string story)
       {
-         throw new NotImplementedException();
+         return ForumData.CreateThread(bid, 0, uid, uname, ip, name, story);
       }
 
       public static ThreadEntity GetThread(int tid)
       {
          return ForumData.GetThread(tid);
+      }
+
+      internal static int SavePost(int bid, int tid, int uid, string uname, string name, string ip, string story)
+      {
+         return ForumData.CreatePost(new PostEntity() { 
+            bid=bid,
+            tid=tid,
+            uid=uid,
+            uname=uname,
+            name=name,
+            uip=ip,
+            story=story
+         });
+      }
+
+      internal static void IncThreadReplies(int tid)
+      {
+         DBH.Inc(QA.DBCS_MAIN, "forum_thread", "replies", "tid", tid.ToString());
       }
    }
 }

@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ajax\ForumAjaxRegister.cs" />
+    <Compile Include="Ajax\ForumAjaxMethods.cs" />
     <Compile Include="Data\ForumData.cs" />
     <Compile Include="Entities\BoardEntity.cs" />
     <Compile Include="Entities\PostEntity.cs" />

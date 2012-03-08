@@ -63,7 +63,10 @@
     <Compile Include="FileInfo.cs" />
     <Compile Include="Link.cs" />
     <Compile Include="Role.cs" />
+    <Compile Include="SR\Display.cs" />
+    <Compile Include="SR\Reposity.cs" />
     <Compile Include="SiteSetting.cs" />
+    <Compile Include="SR\DisplayMeta.cs" />
     <Compile Include="UserAccount.cs" />
     <Compile Include="District.cs" />
     <Compile Include="Env.cs" />
@@ -99,6 +102,7 @@
       <Name>light</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

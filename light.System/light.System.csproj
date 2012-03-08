@@ -67,6 +67,7 @@
     <Compile Include="SR\Reposity.cs" />
     <Compile Include="SiteSetting.cs" />
     <Compile Include="SR\DisplayMeta.cs" />
+    <Compile Include="SR\ReposityMeta.cs" />
     <Compile Include="UserAccount.cs" />
     <Compile Include="District.cs" />
     <Compile Include="Env.cs" />

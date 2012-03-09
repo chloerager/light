@@ -9,7 +9,9 @@ namespace light.SR
    {
       public int Id;
 
-      public int TableCount;
+      public int Total;
+
+      public byte OP; //insert0,update1,delete2,insert&update3
 
       public string Name;
 
@@ -30,10 +32,12 @@ namespace light.SR
 
       public int TableIndex;
 
+      public bool PK;
+
+      public bool AutoId;
+
       public string Name;
 
       public string Field;
-
-      public Func<string, string> Map;
    }
 }

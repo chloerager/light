@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Data;
-using light.CMS.Entities;
+using light.Content.Entities;
 using light.Data;
 
-namespace light.CMS.Data
+namespace light.Content.Data
 {
    public class Quotation
    {

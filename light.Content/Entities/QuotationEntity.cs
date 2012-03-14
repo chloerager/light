@@ -1,6 +1,6 @@
 ﻿using light.Data;
 
-namespace light.CMS.Entities
+namespace light.Content.Entities
 {
    [Table("quotation")]
    public class QuotationEntity

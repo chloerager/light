@@ -8,8 +8,8 @@
     <ProjectGuid>{2F788156-097C-48FB-A4AD-0C4A08B467D1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>light.CMS</RootNamespace>
-    <AssemblyName>light.CMS</AssemblyName>
+    <RootNamespace>light.Content</RootNamespace>
+    <AssemblyName>light.Content</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,11 +40,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Category.cs" />
+    <Compile Include="Content.cs" />
+    <Compile Include="Data\CategoryData.cs" />
+    <Compile Include="Data\ContentData.cs" />
+    <Compile Include="Data\Quotation.cs" />
+    <Compile Include="Digest.cs" />
+    <Compile Include="Entities\CategoryEntity.cs" />
+    <Compile Include="Entities\ContentEntity.cs" />
+    <Compile Include="Entities\QuotationEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controller\" />
-    <Folder Include="Entities\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\light\light.csproj">
+      <Project>{8B978397-2CF6-4102-A86A-C3F357F52923}</Project>
+      <Name>light</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

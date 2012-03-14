@@ -1,0 +1,2 @@
+var titles = [{ t: '冰冻三尺非一日之寒' }, { t: '千里之行始于足下，千里之堤毁于蚁穴' }, { t: '众人一条心，黄土变成金'}]
+      if (typeof (titles) == 'object' && titles.length > 0) document.title = '360KB - ' + titles[$.random(titles.length)].t;

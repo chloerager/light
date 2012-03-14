@@ -45,6 +45,7 @@
     <Compile Include="Ajax\ImageAjaxMethods.cs" />
     <Compile Include="Ajax\ReceiveHandler.cs" />
     <Compile Include="Ajax\EventRequestHandler.cs" />
+    <Compile Include="Ajax\SRHandler.cs" />
     <Compile Include="Ajax\StaticAjaxMethods.cs" />
     <Compile Include="Ajax\UserAjaxMethods.cs" />
     <Compile Include="Ajax\AjaxHandler.cs" />

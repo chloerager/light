@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using light.Data;
 
-namespace light.CMS.Entities
+namespace light.Content.Entities
 {
    public class ContentEntity
    {

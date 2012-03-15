@@ -13,6 +13,7 @@ namespace light.Ajax
 {
    public class UserAjaxMethods
    {
+      #region LOGIN & SIGNUP
       /// <summary>
       ///  响应账户注册请求
       ///  成功：1 失败：0 邀请码错误：-1
@@ -63,6 +64,14 @@ namespace light.Ajax
          context.Response.Write(UserAccount.Logout() ? "1" : "0");
       }
 
+      #endregion
+
+      #region USER_INFO_OP
+
+      /// <summary>
+      ///  保存基本信息
+      /// </summary>
+      /// <param name="context"></param>
       public static void SaveBaseInfo(HttpContext context)
       {
          string sex = context.Request.Form["s"];
@@ -102,6 +111,10 @@ namespace light.Ajax
          context.Response.Write(JU.AJAX_FAIL);
       }
 
+      /// <summary>
+      ///  验证用户名或邮件是否存在
+      /// </summary>
+      /// <param name="context"></param>
       public static void CheckNameAndEmail(HttpContext context)
       {
          string name = context.Request.Form["n"];
@@ -117,6 +130,11 @@ namespace light.Ajax
 
          context.Response.Write(ret);
       }
+
+      /// <summary>
+      ///  修改密码
+      /// </summary>
+      /// <param name="context"></param>
       public static void ChangePassword(HttpContext context)
       {
          if (context.Request.IsAuthenticated)
@@ -142,27 +160,6 @@ namespace light.Ajax
          }
 
          context.Response.Write(JU.Build(false,"对不起，无法修改密码，请重新登录后再试！"));
-      }
-
-      public static void SaveRole(HttpContext context)
-      {
-         int id = CU.ToInt(context.Request.Form["id"]);
-         string name = context.Request.Form["name"];
-         string displayname = context.Request.Form["dn"];
-         string description = context.Request.Form["desc"];
-         string action = context.Request.Form["action"];
-
-
-            RoleEntity entity = new RoleEntity() { 
-               id=id,
-               name=name,
-               displayname=displayname,
-               description=description
-            };
-
-            int ret;
-            if (action == "edit") ret = RoleData.Update(entity);
-            else if(action=="create") ret = RoleData.Create(entity);
       }
 
       /// <summary>
@@ -195,5 +192,35 @@ namespace light.Ajax
          context.Response.Write(JU.Build(false, "没有可用的邀请码!"));
          context.Response.End();
       }
+
+      #endregion
+
+      #region ROLE
+
+      public static void SaveRole(HttpContext context)
+      {
+         int id = CU.ToInt(context.Request.Form["id"]);
+         string name = context.Request.Form["name"];
+         string displayname = context.Request.Form["dn"];
+         string description = context.Request.Form["desc"];
+         string action = context.Request.Form["action"];
+
+
+         RoleEntity entity = new RoleEntity()
+         {
+            id = id,
+            name = name,
+            displayname = displayname,
+            description = description
+         };
+
+         int ret = 0;
+         if (action == "edit") ret = RoleData.Update(entity);
+         else if (action == "create") ret = RoleData.Create(entity);
+         if (ret > 0) context.Response.Write(JU.Build(true, ""));
+         else context.Response.Write(JU.Build(false, ""));
+      }
+
+      #endregion
    }
 }

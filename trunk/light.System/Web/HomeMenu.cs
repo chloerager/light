@@ -53,11 +53,11 @@ namespace light.Web
          foreach (int roleid in roleList)
          {
             //TODO:CACHE
-            IList<ActionEntity> list = Role.ActionList(roleid);
+            IList<AppEntity> list = Role.ActionList(roleid);
 
             output.Write("<div class=\"f14 fb pl10 mt-title clear\">" + Role.GetDisplayName(roleid) + "</div><div class=\"mt-item-list\">");
 
-            foreach (ActionEntity action in list)
+            foreach (AppEntity action in list)
             {
                string text = action.name;
                string link = action.url;

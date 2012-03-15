@@ -9,11 +9,11 @@ namespace light
 {
    public class Role
    {
-      public static IList<ActionEntity> ActionList(int roleid)
+      public static IList<AppEntity> ActionList(int roleid)
       {
          //from cache first
 
-         return RoleData.GetActionList(roleid);
+         return RoleData.GetAppList(roleid);
       }
 
       internal static string GetDisplayName(int roleid)

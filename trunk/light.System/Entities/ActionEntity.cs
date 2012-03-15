@@ -6,14 +6,11 @@ using light.Data;
 
 namespace light.Entities
 {
-   [Table("app_action")]
-   public sealed class ActionEntity
+   [Table("app")]
+   public sealed class AppEntity
    {
       [Field("id",true,true,true)]
       public int id;
-
-      [Field("appid")]
-      public int appid;
 
       [Field("iframe")]
       public bool iframe;

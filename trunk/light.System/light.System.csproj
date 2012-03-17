@@ -94,6 +94,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQA.cs" />
     <Compile Include="Entities\UserStatusEntity.cs" />
+    <Compile Include="Web\AuthView.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Web\BaseView.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Web\HomeMenu.cs" />
     <Compile Include="Web\JavaScriptData.cs" />
     <Compile Include="Web\OverHead.cs" />
